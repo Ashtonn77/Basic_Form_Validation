@@ -16,9 +16,8 @@ if(isset($_POST['submit'])){
             $nameError = "only letters and whitespace allowed";
         }
     }
-}
 
-//email
+    //email
 if(isset($_POST['submit'])){   
     if(empty($_POST['email'])){
         $emailError = "Email is required";
@@ -53,6 +52,21 @@ if(isset($_POST['submit'])){
     }
 }
 
+if(!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['gender'])&& !empty($_POST['website'])){
+    if((preg_match($nameRegex, $name)) && (preg_match($emailRegex, $email)) && (preg_match($websiteRegex, $website))){
+        echo "<h2>Your submitted information:</h2>";
+        echo "Name          :   ".ucwords($_POST['name'])."<br>";
+        echo "Email Address :   {$_POST['email']}<br>";
+        echo "Gender        :   {$_POST['gender']}<br>";
+        echo "Website       :   :{$_POST['website']}<br>";
+        echo "Comments      :   {$_POST['comments']}<br>";
+    }else{
+        echo "Please correct your input and re-submit";
+    }
+}
+
+}
+
 function userInput($data){
     return $data;
 }
@@ -81,8 +95,8 @@ Email:<br>
 <?=$emailError?><br>
 
 Gender:<br>
-<input type="radio" name="gender" class="radio">Female
-<input type="radio" name="gender" class="radio">Male &nbsp;*
+<input type="radio" name="gender" class="radio" value="Female">Female
+<input type="radio" name="gender" class="radio" value="Male">Male &nbsp;*
 <?=$genderError?><br>
 
 Website:<br>
