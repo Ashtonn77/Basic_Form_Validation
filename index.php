@@ -1,47 +1,55 @@
 <?php
 
-$nameRequired = "";
-$emailRequired = "";
-$genderRequired = "";
-$websiteRequired = "";
+$nameError = "";
+$emailError = "";
+$genderError = "";
+$websiteError = "";
 
 //name
-if(isset($_POST['submit'])){
-    $name = $_POST['name'];
-    if(empty($name)){
-        $nameRequired = "Name is required";
+if(isset($_POST['submit'])){    
+    if(empty($_POST['name'])){
+        $nameError = "Name is required";
     }else{
-        $name = userInput($name);
+        $name = userInput($_POST['name']);
+        $nameRegex = "/^[a-zA-Z. ]*$/";
+        if(!preg_match($nameRegex, $name)){
+            $nameError = "only letters and whitespace allowed";
+        }
     }
 }
 
 //email
-if(isset($_POST['submit'])){
-    $email = $_POST['email'];
-    if(empty($email)){
-        $emailRequired = "Email is required";
+if(isset($_POST['submit'])){   
+    if(empty($_POST['email'])){
+        $emailError = "Email is required";
     }else{
-        $email = userInput($email);
+        $email = userInput($_POST['email']);
+        $emailRegex = "/[a-zA-Z.-_]{3,}@[a-zA-Z-_.]{3,}[.]{1}[a-zA-Z_.-]{2,}/";
+        if(!preg_match($emailRegex, $email)){
+            $emailError = "Invalid Emial :(";
+        }
     }
 }
 
 //gender
-if(isset($_POST['submit'])){
-    $gender = $_POST['gender'];
-    if(empty($gender)){
-        $genderRequired = "Gender is required";
+if(isset($_POST['submit'])){    
+    if(empty($_POST['gender'])){
+        $genderError = "Gender is required";
     }else{
-        $gender = userInput($gender);
+        $gender = userInput($_POST['gender']);
     }
 }
 
 //website
-if(isset($_POST['submit'])){
-    $website = $_POST['website'];
-    if(empty($website)){
-        $websiteRequired = "Website is required";
+if(isset($_POST['submit'])){   
+    if(empty($_POST['website'])){
+        $websiteError = "Website is required";
     }else{
-        $website = userInput($website);
+        $website = userInput($_POST['website']);
+        $websiteRegex = "/(https:|ftp)\/\/+[a-zA-Z0-9\-\*\$\~\&\!\+\.\`\/\@]+\.[a-zA-Z0-9\-\*\$\~\&\!\+\.\`\/]*/";
+        if(!preg_match($websiteRegex, $website)){
+            $websiteError = "Invalid Website :(";
+        }
     }
 }
 
@@ -66,20 +74,20 @@ function userInput($data){
 <legend>Please fill in the following fields</legend>
 Name:<br>
 <input type="text" name="name" class="input">*
-<?=$nameRequired?><br>
+<?=$nameError?><br>
 
 Email:<br>
 <input type="text" name="email" class="input">*
-<?=$emailRequired?><br>
+<?=$emailError?><br>
 
 Gender:<br>
 <input type="radio" name="gender" class="radio">Female
 <input type="radio" name="gender" class="radio">Male &nbsp;*
-<?=$genderRequired?><br>
+<?=$genderError?><br>
 
 Website:<br>
 <input type="text" name="website" class="input">*
-<?=$websiteRequired?><br>
+<?=$websiteError?><br>
 
 Comment:<br>
 <textarea name="comments" cols="25" rows="5"></textarea>
