@@ -1,0 +1,42 @@
+
+     form{
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 1.0em;
+    }
+
+    footer{
+       font-family:'Courier New', Courier, monospace;
+    }
+
+    fieldset{
+        width: 600px;
+    }
+
+    h1{
+        font-family:'Courier New', Courier, monospace;
+    }   
+
+   input[type='text'], input[type='email'], textarea{
+       border: 1px solid dashed;
+       background: rgb(221, 216, 212);
+       width: 600px;
+       padding: .5em; 
+       font-family:'Courier New', Courier, monospace;    
+   }
+
+   input:hover, textarea:hover{
+       background:aquamarine;
+       cursor: pointer;
+   }
+   
+   .error{
+       color:red;
+   }
+
+   input[type='submit']{
+       padding: .5em; 
+       font-size: 1.0em; 
+       font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+       border: 1px solid dashed;      
+   }
+   
